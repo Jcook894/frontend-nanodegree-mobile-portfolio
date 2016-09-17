@@ -424,7 +424,7 @@ var resizePizzas = function(size) {
    // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
-    var windowWidth = document.getElementById("#randomPizzas").offsetWidth;
+    var windowWidth = document.getElementById("randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
     // Changes the slider value to a percent width
@@ -449,10 +449,13 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.getElementsByClassName("randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.getElementsByClassName("randomPizzaContainer")[i], size);
-      var newwidth = (document.getElementsByClassName("randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
+      var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
+      var dx = determineDx(randomPizzas[i]), size;
+      var newwidth = (randomPizzas[i].offsetWidth + dx) + 'px';
+    for (var i = 0; i < randomPizzas.length; i++) {
+
+       randomPizzas[i].style.width = newwidth;
+
     }
   }
 
@@ -506,12 +509,12 @@ function updatePositions() {
 
   //Put scrollTop and phase variables seperatly to stop it from
   // iterating over each other.
-  var scroller = document.body.scrollTop
+  var pizzaScroll = document.body.scrollTop
   var phase = [];
 
   for (var i = 0; i < items.length; i++) {
 
-  phase = Math.sin((scroller / 1250) + (i % 5));
+  phase = Math.sin((pizzaScroll / 1250) + (i % 5));
   items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
 
   }
