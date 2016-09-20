@@ -3,6 +3,8 @@ var uglify = require('gulp-uglify');
 var pump = require('pump');
 var webserver = require('gulp-webserver');
 var htmlmin = require('gulp-htmlmin');
+var cleanCSS = require('gulp-clean-css');
+
 
 // Minify's and compresses the main.js file
 gulp.task('compress', function (cb) {
@@ -19,6 +21,13 @@ gulp.task('compress', function (cb) {
 gulp.task('minify', function() {
   return gulp.src('./views/pizza.html')
     .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('minify-css', function() {
+  var pizzaCss =['./views/css/*.css', './views/css/bootstrap-grid.css']
+  return gulp.src(pizzaCss)
+    .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('dist'));
 });
 
