@@ -1,5 +1,22 @@
 ## My Optimizations
 
+
+### How to run.
+
+
+1. Open up terminal and install ngrok
+
+    npm install ngrok  
+
+2. On a separate terminal screen cd into the directory with all your files and run :
+    python -m SimpleHTTPServer 8080
+
+3. Now, back on the original terminal screen, run:
+    ngrok http 8080
+
+  & now you should be able to run a local server.
+  
+
 ### Gulpfile
 
 
